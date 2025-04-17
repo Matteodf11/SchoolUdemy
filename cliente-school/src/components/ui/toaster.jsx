@@ -1,4 +1,4 @@
-function _optionalChain(ops) {
+﻿function _optionalChain(ops) {
   let lastAccessLHS = undefined
   let value = ops[0]
   let i = 1
@@ -31,7 +31,7 @@ import {
 } from '@chakra-ui/react'
 
 export const toaster = createToaster({
-  placement: 'bottom-end',
+  placement: 'bottom-center',
   pauseOnPageIdle: true,
 })
 

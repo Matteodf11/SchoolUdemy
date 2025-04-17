@@ -11,8 +11,8 @@ export function Header() {
     }
 
     return (
-        <Box bg="brown.100" p="4" color="white">
-            <Flex justify="space-between" align="center">
+        <Box bg="brown.200" p="4" color="white">
+            <Flex justify="space-between" align="center" m='0 auto' maxW='80em'>
                 <Flex>
                     <Button as={Link} to="/dashboard" bg="brown.700" mr="4" _hover={{ bg: 'brown.400' }}>
                         Listado
@@ -21,9 +21,9 @@ export function Header() {
                         Nuevo usuario
                     </Button>
                 </Flex>
-                <Text cursor="pointer" onClick={cerrarSesion} _hover={{ color: 'green.500' }}>
+                <Button bg="red.600" onClick={cerrarSesion} _hover={{ bg: 'red.500' }}>
                     Cerrar Sesión
-                </Text>
+                </Button>
             </Flex>
         </Box>
     );

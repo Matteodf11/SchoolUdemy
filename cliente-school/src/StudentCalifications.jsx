@@ -2,7 +2,8 @@
 import { useParams } from "react-router-dom";
 import * as API from './Services/data.js';
 import { Header } from "./Header.jsx";
-import { Box, Heading, Input, Button, Table, Text } from "@chakra-ui/react";
+import { Box, Heading, Input, Button, Table, Stat } from "@chakra-ui/react";
+
 
 
 export function StudentCalifications() {
@@ -128,7 +129,11 @@ export function StudentCalifications() {
                             </Table.Row>
                         </Table.Body>
                     </Table.Root>
-                    <Text mt="4" fontWeight="bold">Nota Total: {total}</Text>
+                    <Stat.Root mt='4'>
+                        <Stat.Label>Nota Final</Stat.Label>
+                        <Stat.ValueText>{total}</Stat.ValueText>
+                    </Stat.Root>
+
                 </Box>
             </Box>
         </>

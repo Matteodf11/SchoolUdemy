@@ -6,7 +6,11 @@ import {
     Button,
     Heading,
     Table,
+    Text,
+    Icon
 } from "@chakra-ui/react";
+import { HiHeart } from "react-icons/hi"
+
 
 export function StudentsList() {
     let user = sessionStorage.getItem('usuario');
@@ -28,20 +32,20 @@ export function StudentsList() {
     }
 
     return (
-        <Box p="6" bg="brand.50" minHeight="100vh">
+        <Box p="6" bg="brand.50" minHeight="100vh" >
             <Heading as="h1" size="lg" mb="6" textAlign="center" color="brand.500">
                 Lista de Alumnos
             </Heading>
-            <Box overflowX="auto" bg="white" p="6" rounded="md" shadow="md">
+            <Box overflowX="auto" bg="white" p="6" rounded="md" shadow="md" m='0 auto' maxW='80em'>
                 <Table.Root>
                     <Table.Header>
                         <Table.Row>
                             <Table.ColumnHeader>ID</Table.ColumnHeader>
                             <Table.ColumnHeader>DNI</Table.ColumnHeader>
                             <Table.ColumnHeader>Nombre</Table.ColumnHeader>
-                            <Table.ColumnHeader>Dirección</Table.ColumnHeader>
-                            <Table.ColumnHeader>Edad</Table.ColumnHeader>
-                            <Table.ColumnHeader>Email</Table.ColumnHeader>
+                            <Table.ColumnHeader >Dirección</Table.ColumnHeader>
+                            <Table.ColumnHeader hideBelow="md">Edad</Table.ColumnHeader>
+                            <Table.ColumnHeader hideBelow="md">Email</Table.ColumnHeader>
                             <Table.ColumnHeader>Asignatura</Table.ColumnHeader>
                             <Table.ColumnHeader>Modificar</Table.ColumnHeader>
                             <Table.ColumnHeader>Calificar</Table.ColumnHeader>
@@ -55,8 +59,8 @@ export function StudentsList() {
                                 <Table.Cell>{student.dni}</Table.Cell>
                                 <Table.Cell>{student.nombre}</Table.Cell>
                                 <Table.Cell>{student.direccion}</Table.Cell>
-                                <Table.Cell>{student.edad}</Table.Cell>
-                                <Table.Cell>{student.email}</Table.Cell>
+                                <Table.Cell hideBelow="md">{student.edad}</Table.Cell>
+                                <Table.Cell hideBelow="md">{student.email}</Table.Cell>
                                 <Table.Cell>{student.asignatura}</Table.Cell>
                                 <Table.Cell>
                                     <Button
@@ -68,7 +72,10 @@ export function StudentsList() {
                                             bg: 'brand.300',
                                         }}
                                     >
-                                        Modificar
+                                        <Text hideBelow="md">Modificar</Text> 
+                                        <Icon hideFrom='md' size="lg" color="pink.700">
+                                            <HiHeart />
+                                        </Icon>
                                     </Button>
                                 </Table.Cell>
                                 <Table.Cell>
@@ -80,6 +87,8 @@ export function StudentsList() {
                                         _hover={{
                                             bg: 'brand.300',
                                         }}
+
+
                                         
                                     >
                                         Calificar

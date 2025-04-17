@@ -29,7 +29,8 @@ const config = defineConfig({
                 brown: {
                     50: '#EFEBE9', // Light brown
                     100: '#D7CCC8',
-                    200: '#BCAAA4',
+                    //200: '#BCAAA4',
+                    200:'#E8D9D0',
                     300: '#A1887F',
                     400: '#8D6E63',
                     500: '#795548', // Strong brown
