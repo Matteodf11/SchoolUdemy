@@ -152,17 +152,13 @@ namespace AccesoDatos.Operaciones
 
         }
 
-        public Alumno seleccionarPorDNI(string dni)
-        {
-            return context.Alumnos.FirstOrDefault(a => a.Dni == dni);
-        }
 
-        public bool insertarYMatricular(string dni , string nombre, string direccion, int edad, string email, int id_asig)
+        public bool insertarYMatricular(string dni, string nombre, string direccion, int edad, string email, int id_asig)
         {
             try
             {
-                var existe = seleccionarPorDNI(dni);
-                if (existe == null)
+                var alumno = seleccionarPorDNI(dni);
+                if (alumno == null)
                 {
                     insertarAlumno(dni, nombre, direccion, edad, email);
                     var insertado = seleccionarPorDNI(dni);
@@ -171,27 +167,38 @@ namespace AccesoDatos.Operaciones
                     m.AsignaturaId = id_asig;
                     context.Matriculas.Add(m);
                     context.SaveChanges();
-                    
+                    return true;
                 }
                 else
                 {
-                    Matricula m = new Matricula();
-                    m.AlumnoId = existe.Id;
-                    m.AsignaturaId = id_asig;
-                    context.Matriculas.Add(m);
-                    context.SaveChanges();
-                   
+                    // Verificar si el alumno ya está matriculado en la asignatura
+                    var matriculaExistente = context.Matriculas
+                        .FirstOrDefault(m => m.AlumnoId == alumno.Id && m.AsignaturaId == id_asig);
+                    if (matriculaExistente == null)
+                    {
+                        Matricula m = new Matricula();
+                        m.AlumnoId = alumno.Id;
+                        m.AsignaturaId = id_asig;
+                        context.Matriculas.Add(m);
+                        context.SaveChanges();
+                        return true;
+                    }
+                    else
+                    {
+                        return false; // El alumno ya está matriculado en esta asignatura
+                    }
                 }
-
-                return true;
             }
             catch (Exception)
             {
-
                 throw;
             }
         }
 
 
+        public Alumno seleccionarPorDNI(string dni)
+        {
+            return context.Alumnos.FirstOrDefault(a => a.Dni == dni);
+        }
     }
 }

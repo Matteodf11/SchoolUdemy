@@ -4,6 +4,7 @@ import imagen from './assets/login.jpg';
 import { useNavigate } from 'react-router-dom';
 import { Box, Heading, Input, Button, Image } from '@chakra-ui/react';
 import { Toaster, toaster } from './components/ui/toaster';
+import { motion } from 'framer-motion';
 
 export function Login() {
     const [teacher, setTeacher] = useState({ usuario: '', password: '' });
@@ -37,59 +38,70 @@ export function Login() {
             bg="brand.50"
             p="4"
         >
-            <Box
-                bg="white"
-                p="6"
-                rounded="md"
-                shadow="md"
-                width="100%"
-                maxWidth="400px"
-                textAlign="center"
+            <motion.div
+                initial={{ opacity: 0, y: -50 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 1.3 }}
+                style={{ width: '100%', maxWidth: '400px' }}
             >
-                <Image src={imagen} alt="Login" boxSize="100px" mx="auto" mb="4" borderRadius="full" />
-                <Heading as="h2" size="lg" color="brand.500" mb="6">
-                    Iniciar Sesión
-                </Heading>
-                <form id="formulario" onSubmit={handleSubmit}>
-                    <Box mb="4">
-                        <Input
-                            type="text"
-                            id="usuario"
-                            placeholder="Usuario"
-                            value={teacher.usuario}
-                            onChange={(event) =>
-                                setTeacher({ ...teacher, usuario: event.target.value })
-                            }
-                            borderColor="brand.300"
-                            focusBorderColor="brand.500"
-                        />
-                    </Box>
-                    <Box mb="6">
-                        <Input
-                            type="password"
-                            id="password"
-                            placeholder="Contraseña"
-                            value={teacher.password}
-                            onChange={(event) =>
-                                setTeacher({ ...teacher, password: event.target.value })
-                            }
-                            borderColor="brand.300"
-                            focusBorderColor="brand.500"
-                        />
-                    </Box>
-                    <Button
-                        type="submit"
-                        bg="brand.500"
-                        color="white"
-                        _hover={{
-                            bg: 'brand.600',
-                        }}
-                        width="100%"
-                    >
+                <Box
+                    bg="white"
+                    p="6"
+                    rounded="md"
+                    shadow="md"
+                    width="100%"
+                    maxWidth="400px"
+                    textAlign="center"
+                >
+                    <Image src={imagen} alt="Login" boxSize="100px" mx="auto" mb="4" borderRadius="full" />
+                    <Heading as="h2" size="lg" color="brand.500" mb="6">
                         Iniciar Sesión
-                    </Button>
-                </form>
-            </Box>
+                    </Heading>
+                    <form id="formulario" onSubmit={handleSubmit}>
+                        <Box mb="4">
+                            <Input
+                                type="text"
+                                id="usuario"
+                                placeholder="Usuario"
+                                value={teacher.usuario}
+                                onChange={(event) =>
+                                    setTeacher({ ...teacher, usuario: event.target.value })
+                                }
+                                borderColor="brand.300"
+                                focusBorderColor="brand.500"
+                            />
+                        </Box>
+                        <Box mb="6">
+                            <Input
+                                type="password"
+                                id="password"
+                                placeholder="Contraseña"
+                                value={teacher.password}
+                                onChange={(event) =>
+                                    setTeacher({ ...teacher, password: event.target.value })
+                                }
+                                borderColor="brand.300"
+                                focusBorderColor="brand.500"
+                            />
+                        </Box>
+                        <motion.div
+                            whileHover={{ scale: 1.1 }}
+                            whileTap={{ scale: 0.9 }}>
+                            <Button
+                                type="submit"
+                                bg="brand.500"
+                                color="white"
+                                _hover={{
+                                    bg: 'brand.600',
+                                }}
+                                width="100%"
+                            >
+                                Iniciar Sesión
+                            </Button></motion.div>
+                        
+                    </form>
+                </Box>
+            </motion.div>
             <Toaster />
         </Box>
     );

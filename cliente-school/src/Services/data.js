@@ -1,4 +1,4 @@
-const URL = 'https://localhost:7086/api/'
+ï»¿const URL = 'https://localhost:7086/api/'
 
 
 export function login(usuario, pass) {
@@ -83,9 +83,9 @@ export function getCalifications(id) {
 export function addCalification(calificacion, id) {
     let data = {
         descripcion: calificacion.descripcion,
-        nota: calificacion.nota, // Convertir a número flotante
-        porcentaje: calificacion.porcentaje, // Convertir a número entero
-        matriculaId: id// Asegúrate de que sea un número entero
+        nota: calificacion.nota, // Convertir a nÃºmero flotante
+        porcentaje: calificacion.porcentaje, // Convertir a nÃºmero entero
+        matriculaId: id// AsegÃºrate de que sea un nÃºmero entero
     };
 
     return fetch(URL + `Calificaciones/crearCalificacion`, {
@@ -96,7 +96,7 @@ export function addCalification(calificacion, id) {
         }
     }).then(response => {
         if (!response.ok) {
-            throw new Error('Error al crear la calificación');
+            throw new Error('Error al crear la calificaciÃ³n');
         }
         return response.text();
     });
